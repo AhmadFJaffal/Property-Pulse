@@ -20,7 +20,6 @@ const Navbar = () => {
   useEffect(() => {
     const setAuthProviders = async () => {
       const res = await getProviders();
-      console.log("Providers fetched:", res); // Debug log
       setProviders(res);
     };
 
