@@ -34,13 +34,57 @@ const PropertyAddForm = () => {
     setMounted(true);
   }, []);
 
-  const handleChange = () => {};
-  const handleAmenitiesChange = () => {};
-  const handleImageChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name.includes(".")) {
+      const [outerKey, InnerKey] = name.split(".");
+      setFields((prev) => ({
+        ...prev,
+        [outerKey]: { ...prev[outerKey], [InnerKey]: value },
+      }));
+      return;
+    } else {
+      setFields((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleAmenitiesChange = (e) => {
+    const { value, checked } = e.target;
+    const updatedAmenities = [...fields.amenities];
+    if (checked) {
+      updatedAmenities.push(value);
+    } else {
+      const index = updatedAmenities.indexOf(value);
+      if (index !== -1) {
+        updatedAmenities.splice(index, 1);
+      }
+    }
+
+    setFields((prev) => {
+      return {
+        ...prev,
+        amenities: updatedAmenities,
+      };
+    });
+  };
+
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+    const updatedImages = [...fields.images];
+    for (const file of files) {
+      updatedImages.push(file);
+    }
+
+    setFields((prev) => ({ ...prev, images: updatedImages }));
+  };
 
   return (
     mounted && (
-      <form>
+      <form
+        action="/api/properties"
+        method="POST"
+        encType="multipart/form-data"
+      >
         <h2 className="text-3xl text-center font-semibold mb-6">
           Add Property
         </h2>
@@ -53,7 +97,7 @@ const PropertyAddForm = () => {
             name="type"
             className="border rounded w-full py-2 px-3"
             required
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.type}
           >
             <option value="Apartment">Apartment</option>
@@ -76,7 +120,7 @@ const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3 mb-2"
             placeholder="eg. Beautiful Apartment In Miami"
             required
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.name}
           />
         </div>
@@ -93,7 +137,7 @@ const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3"
             rows="4"
             placeholder="Add an optional description of your property"
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.description}
           ></textarea>
         </div>
@@ -106,7 +150,7 @@ const PropertyAddForm = () => {
             name="location.street"
             className="border rounded w-full py-2 px-3 mb-2"
             placeholder="Street"
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.location.street}
           />
           <input
@@ -116,7 +160,7 @@ const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3 mb-2"
             placeholder="City"
             required
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.location.city}
           />
           <input
@@ -126,7 +170,7 @@ const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3 mb-2"
             placeholder="State"
             required
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.location.state}
           />
           <input
@@ -135,7 +179,7 @@ const PropertyAddForm = () => {
             name="location.zipcode"
             className="border rounded w-full py-2 px-3 mb-2"
             placeholder="Zipcode"
-            handleChange={handleChange}
+            onChange={handleChange}
             value={fields.location.zipcode}
           />
         </div>
@@ -154,7 +198,7 @@ const PropertyAddForm = () => {
               name="beds"
               className="border rounded w-full py-2 px-3"
               required
-              handleChange={handleChange}
+              onChange={handleChange}
               value={fields.beds}
             />
           </div>
@@ -171,7 +215,7 @@ const PropertyAddForm = () => {
               name="baths"
               className="border rounded w-full py-2 px-3"
               required
-              handleChange={handleChange}
+              onChange={handleChange}
               value={fields.baths}
             />
           </div>
@@ -188,7 +232,7 @@ const PropertyAddForm = () => {
               name="square_feet"
               className="border rounded w-full py-2 px-3"
               required
-              handleChange={handleChange}
+              onChange={handleChange}
               value={fields.square_feet}
             />
           </div>

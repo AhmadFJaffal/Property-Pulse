@@ -64,7 +64,10 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
-              <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" />
+              <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" priority={true}
+                width={0}
+                height={0}
+              />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 PropertyPulse
@@ -173,6 +176,7 @@ const Navbar = () => {
                       alt=""
                       width={40}
                       height={40}
+                      priority={true}
                     />
                   </button>
                 </div>
