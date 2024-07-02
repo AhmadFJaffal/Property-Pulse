@@ -4,6 +4,49 @@ import { getSessionUser } from "@/utils/getSessionUser";
 
 export const dynamic = "force-dynamic";
 
+// GET /api/messages
+
+export const GET = async (req) => {
+  try {
+    await connectDB();
+
+    const sender = await getSessionUser();
+
+    if (!sender) {
+      return new Response(JSON.stringify({ message: "User not defined" }), {
+        status: 401,
+      });
+    }
+
+    const { userId } = sender;
+
+    const readMessages = await Message.find({
+      recepient: userId,
+      read: true,
+    })
+      .sort({ createdAt: -1 })
+      .populate("sender", "username")
+      .populate("property", "name");
+
+    const unreadMessages = await Message.find({
+      recepient: userId,
+      read: false,
+    })
+      .sort({ createdAt: -1 })
+      .populate("sender", "username")
+      .populate("property", "name");
+
+    const messages = [...unreadMessages, ...readMessages];
+
+    return new Response(JSON.stringify(messages), { status: 200 });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return new Response(JSON.stringify({ message: "Internal server error" }), {
+      status: 500,
+    });
+  }
+};
+
 // POST /api/messages
 export const POST = async (req) => {
   try {
