@@ -7,11 +7,13 @@ export const fetchProperties = async ({ showFeatured = false } = {}) => {
       return [];
     }
     const res = await fetch(
-      `${apiDomain}/properties${showFeatured ? "/featured" : ""}`,
+      `${apiDomain}/properties${showFeatured ? "/featured" : ""}`
     );
 
     if (!res.ok) {
-      throw new Error("failed to fetch properties", res.statusText);
+      throw new Error(
+        `Failed to fetch properties: ${res.status} ${res.statusText}`
+      );
     }
 
     const data = await res.json();
