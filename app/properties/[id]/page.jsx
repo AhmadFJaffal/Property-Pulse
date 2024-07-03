@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { fetchProperty } from "@/utils/requests";
-import PropertyHeaderImage from "@/components/PropertyHeaderImage";
-import PropertyDetails from "@/components/PropertyDetails";
+import PropertyHeaderImage from "@/components/property/PropertyHeaderImage";
+import PropertyDetails from "@/components/property/PropertyDetails";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import Spinner from "@/components/general_utils/Spinner";
-import PropertyImages from "@/components/PropertyImages";
+import PropertyImages from "@/components/property/PropertyImages";
 import BookmarkButton from "@/components/buttons/BookmarkButton";
 import ShareButtons from "@/components/buttons/ShareButtons";
 import PropertyContactForm from "@/components/forms/PropertyContactForm";
