@@ -1,6 +1,6 @@
 import React from "react";
-import PropertySearchForm from "@/components/PropertySearchForm";
-import Properties from "@/components/Properties";
+import PropertySearchForm from "@/components/forms/PropertySearchForm";
+import Properties from "@/components/property/Properties";
 
 const PropertiesPage = async () => {
   return (
