@@ -7,7 +7,7 @@ import profileDefault from "@/assets/images/profile.png";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import UnreadMessageCount from "./UnreadMessageCount";
+import UnreadMessageCount from "../messaging/UnreadMessageCount";
 
 const Navbar = () => {
   const { data: session } = useSession();

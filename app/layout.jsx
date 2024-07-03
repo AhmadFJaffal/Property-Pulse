@@ -1,11 +1,12 @@
 import React from "react";
 import "@/assets/styles/globals.css";
-import Navbar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-import AuthProvider from "@/components/AuthProvider";
+import Navbar from "@/components/main_elements/NavBar";
+import Footer from "@/components/main_elements/Footer";
+import AuthProvider from "@/components/Providers/AuthProvider";
 import { GlobalProvider } from "@/context/GlobalContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "photoswipe/dist/photoswipe.css";
 
 export const metadata = {
   title: "Property-pulse | Find The Perfect Rental",

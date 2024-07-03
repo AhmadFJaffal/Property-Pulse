@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import PropertyCard from "@/components/PropertyCard";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/general_utils/Spinner";
 import PropertySearchForm from "@/components/PropertySearchForm";
 
 const SearchResultsPage = () => {

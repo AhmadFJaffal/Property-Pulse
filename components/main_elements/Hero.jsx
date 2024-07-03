@@ -1,5 +1,5 @@
 import React from "react";
-import PropertySearchForm from "@/components/PropertySearchForm";
+import PropertySearchForm from "@/components/forms/PropertySearchForm";
 
 const Hero = () => {
   return (

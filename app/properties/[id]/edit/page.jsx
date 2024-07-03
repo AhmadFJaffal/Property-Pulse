@@ -1,5 +1,5 @@
 import React from "react";
-import PropertyEditForm from "@/components/PropertyEditForm";
+import PropertyEditForm from "@/components/forms/PropertyEditForm";
 
 const PropertyEditPage = () => {
   return (

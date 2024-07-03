@@ -6,11 +6,11 @@ import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import PropertyDetails from "@/components/PropertyDetails";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/general_utils/Spinner";
 import PropertyImages from "@/components/PropertyImages";
-import BookmarkButton from "@/components/BookmarkButton";
-import ShareButtons from "@/components/ShareButtons";
-import PropertyContactForm from "@/components/PropertyContactForm";
+import BookmarkButton from "@/components/buttons/BookmarkButton";
+import ShareButtons from "@/components/buttons/ShareButtons";
+import PropertyContactForm from "@/components/forms/PropertyContactForm";
 
 const PropertyPage = () => {
   const { id } = useParams();
