@@ -17,6 +17,7 @@ export const fetchProperties = async ({ showFeatured = false } = {}) => {
     }
 
     const data = await res.json();
+    console.log("data from util is", data);
     return data;
   } catch (error) {
     console.error(error);
