@@ -5,26 +5,24 @@ import Spinner from "@/components/general_utils/Spinner";
 import PropertyCard from "@/components/property/PropertyCard";
 
 const SavedPropertiesPage = () => {
-  const [savedProperties, setSavedProperties] = useState([]);
+  const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSavedProperties = async () => {
       try {
-        const response = await fetch("/api/bookmarks", {
-          method: "GET",
-        });
+        const res = await fetch("/api/bookmarks");
 
-        const data = await response.json();
-
-        if (response.ok) {
-          setSavedProperties(data);
+        if (res.status === 200) {
+          const data = await res.json();
+          setProperties(data);
         } else {
-          toast.error("An error occurred");
+          console.log(res.statusText);
+          toast.error("Failed to fetch saved properties");
         }
       } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong");
+        console.log(error);
+        toast.error("Failed to fetch saved properties");
       } finally {
         setLoading(false);
       }
@@ -37,17 +35,14 @@ const SavedPropertiesPage = () => {
     <Spinner loading={loading} />
   ) : (
     <section className="px-4 py-6">
-      <h1 className="text-2xl mb-4">Saved Properties</h1>
       <div className="container-xl lg:container m-auto px-4 py-6">
-        {savedProperties.length === 0 ? (
-          <p>No properties found</p>
+        <h1 className="text-2xl mb-4">Saved Properties</h1>
+        {properties.length === 0 ? (
+          <p>No saved properties</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {savedProperties.map((savedProperties) => (
-              <PropertyCard
-                key={savedProperties._id}
-                property={savedProperties}
-              />
+            {properties.map((property) => (
+              <PropertyCard key={property._id} property={property} />
             ))}
           </div>
         )}
@@ -55,5 +50,4 @@ const SavedPropertiesPage = () => {
     </section>
   );
 };
-
 export default SavedPropertiesPage;
