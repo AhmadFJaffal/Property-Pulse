@@ -6,6 +6,12 @@ export const fetchProperties = async ({ showFeatured = false } = {}) => {
     if (!apiDomain) {
       return [];
     }
+    console.log(
+      `Fetching from URL: ${apiDomain}/properties${
+        showFeatured ? "/featured" : ""
+      }`
+    );
+
     const res = await fetch(
       `${apiDomain}/properties${showFeatured ? "/featured" : ""}`
     );
